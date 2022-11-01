@@ -1,0 +1,3 @@
+0 Cosbike electra_ 1.44Kwh_ 3-5hrs_ 80-90km_ 250W_ 2
+1 Gemopai Ryder_ 1.15Kwh_ 3-4hrs_ 80-90km_ 250W_ 25k
+2 Fidato Cutie_ 1.05Kwh_ 3-4hrs_ 60-80km_ 250W_ 25km

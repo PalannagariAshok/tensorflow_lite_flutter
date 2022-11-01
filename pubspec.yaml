@@ -23,10 +23,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/model_unquant.tflite
-    - assets/labels.txt
+    - assets/vehicles_model_unquant.tflite
+    - assets/vehicle_labels.txt

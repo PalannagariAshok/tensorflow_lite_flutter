@@ -7,28 +7,29 @@ import 'package:tflite/tflite.dart';
 import 'app_helper.dart';
 
 class TFLiteHelper {
-
-  static StreamController<List<Result>> tfLiteResultsController = new StreamController.broadcast();
+  static StreamController<List<Result>> tfLiteResultsController =
+      new StreamController.broadcast();
   static List<Result> _outputs = List();
   static var modelLoaded = false;
 
-  static Future<String> loadModel() async{
+  static Future<String> loadModel() async {
     AppHelper.log("loadModel", "Loading model..");
 
     return Tflite.loadModel(
-      model: "assets/model_unquant.tflite",
-      labels: "assets/labels.txt",
+      model: "assets/vehicles_model_unquant.tflite",
+      labels: "assets/vehicle_labels.txt",
+      numThreads: 1,
     );
   }
 
   static classifyImage(CameraImage image) async {
-
     await Tflite.runModelOnFrame(
-            bytesList: image.planes.map((plane) {
-              return plane.bytes;
-            }).toList(),
-            numResults: 5)
-        .then((value) {
+      bytesList: image.planes.map((plane) {
+        return plane.bytes;
+      }).toList(),
+      numResults: 1,
+      threshold: 0.1,
+    ).then((value) {
       if (value.isNotEmpty) {
         AppHelper.log("classifyImage", "Results loaded. ${value.length}");
 
@@ -52,7 +53,7 @@ class TFLiteHelper {
     });
   }
 
-  static void disposeModel(){
+  static void disposeModel() {
     Tflite.close();
     tfLiteResultsController.close();
   }
